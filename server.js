@@ -17,9 +17,10 @@ connectDB()
 
 app.use(morgan('dev'))
 app.use(cors({
+    credentials: true,
     origin: 'https://jarmoo-portfolio-alpha.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
+
 }));
 app.use(bodyParse.json({ limit: '10mb' }))
 
