@@ -11,7 +11,7 @@ const { readdirSync } = require('fs')
 // const productRouters = require('./Routes/product')
 // const authRouters = require('./Routes/auth')
 const corsOptions = {
-    origin: 'https://jarmoo-portfolio-alpha.vercel.app/',
+    origin: 'https://jarmoo-portfolio-alpha.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 };
