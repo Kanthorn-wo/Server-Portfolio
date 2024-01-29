@@ -20,6 +20,7 @@ app.use(cors({
     credentials: true,
     origin: 'https://jarmoo-portfolio-alpha.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    optionsSuccessStatus: 204,
 
 }));
 app.use(bodyParse.json({ limit: '10mb' }))
