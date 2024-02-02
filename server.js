@@ -10,18 +10,14 @@ const connectDB = require('./Config/db')
 const { readdirSync } = require('fs')
 // const productRouters = require('./Routes/product')
 // const authRouters = require('./Routes/auth')
-const corsOptions = {
-    origin: 'https://jarmoo-portfolio-alpha.vercel.app',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-};
+
 
 const app = express();
 
 connectDB()
 
 app.use(morgan('dev'))
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(bodyParse.json({ limit: '10mb' }))
 
 app.use((err, req, res, next) => {
