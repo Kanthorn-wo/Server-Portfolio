@@ -27,9 +27,7 @@ app.use('/api', (req, res, next) => {
     next();
 });
 
-app.use('/', (req, res) => {
-    res.send('Hello EndPoint')
-});
+
 readdirSync('./Routes')
     .map((r) => app.use('/api', require('./Routes/' + r)))
 
