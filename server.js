@@ -9,7 +9,7 @@ const app = express();
 
 connectDB()
 
-//app.use(morgan('dev'))
+app.use(morgan('dev'))
 app.use(cors())
 app.options("*", cors);
 app.use(bodyParse.json({ limit: '10mb' }))
@@ -27,6 +27,9 @@ app.use('/api', (req, res, next) => {
     next();
 });
 
+app.use('/', (req, res) => {
+    res.send('Hello EndPoint')
+});
 readdirSync('./Routes')
     .map((r) => app.use('/api', require('./Routes/' + r)))
 
