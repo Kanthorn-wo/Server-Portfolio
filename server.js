@@ -16,15 +16,17 @@ app.use(bodyParse.json({ limit: '10mb' }))
 
 // Middleware to handle CORS for specific routes
 app.use('/api', (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Allow all origins, you may want to specify only trusted origins
+    // ไม่ทำ 308 Redirect
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+    } else {
+        next();
+    }
+
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.header('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
-
-    // Allow credentials (e.g., cookies)
     res.header('Access-Control-Allow-Credentials', 'true');
-
-    // Continue to the next middleware
-    next();
 });
 
 
