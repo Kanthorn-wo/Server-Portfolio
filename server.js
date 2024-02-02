@@ -1,7 +1,7 @@
 const express = require('express')
 
 const morgan = require('morgan')
-const cors = require('cors')
+const microCors = require("micro-cors");
 const bodyParse = require('body-parser')
 
 const connectDB = require('./Config/db')
@@ -13,11 +13,23 @@ const { readdirSync } = require('fs')
 
 
 const app = express();
-
+const cors = microCors({ orgin: "https://jarmoo-portfolio-alpha.vercel.app" });
 connectDB()
+
+app.use((req, res, next) => {
+    cors(req, res);
+
+    if (req.method === "OPTIONS") {
+        return res.status(200).send("ok");
+    }
+
+    next();
+});
 
 app.use(morgan('dev'))
 app.use(cors())
+app.options("*", cors);
+app.use(express.json());
 app.use(bodyParse.json({ limit: '10mb' }))
 
 app.use((err, req, res, next) => {
